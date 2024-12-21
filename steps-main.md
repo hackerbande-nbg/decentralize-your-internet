@@ -58,7 +58,18 @@ topics
   - this is as stupid as it sounds
 - start the machine
 - frantically hit the boot key
-- in the boot menu, select the boot stick
+- in the boot menu, select the boot stick  
+
+- <details>
+    <summary>Dell Latitude E6230</summary>
+  For the Dell Latitude E6230 it was very important to boot the Ubuntu install USB stick already in UEFI mode (*not* Legacy Mode).
+  To achieve this, it was necessary to boot to Bios Setup (Hit F2 during "Dell" Splash Screen), disable Legacy Boot Option, disable Secure Boot and *manually* add a UEFI Boot Option. It was not automatically in the boot sequence list. 
+
+  - Add Option  
+  - Navigate through the file selection list somewhere to a sub dir named grub2 and select the file inside.  
+  - cannot remember anymore in detail unfortunately :(    
+  </details> 
+
 - select "Install ubuntu"
 - select your language ("English")
 - select your keyboard layout, via the identify option ("German")
@@ -74,9 +85,18 @@ topics
 - remember your password
 - Ubuntu ProSetup: skip
 - SSH configuration: enable Install OpenSSH server
+- Be patient once more. This can take a while, especially the "Installing Kernel" step.
 - Reboot after install
 - you successfully installed ubuntu!
 - demo user: cloudy:cloudy
+- update your machine:
+```bash
+sudo apt update && sudo apt upgrade -y
+```
+- Reboot machine:
+```bash
+sudo reboot now
+```
 
 topics:
 - SSH --> later
@@ -114,7 +134,7 @@ topics:
 
 # Step 4 - install docker
 
-- update your package manager and install docker
+- update your package manager and add docker repo [see script](scripts/step_4/add_docker_apt_repo.sh)
 ```bash
 # Add Docker's official GPG key:
 sudo apt-get update
@@ -130,7 +150,7 @@ echo \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt update
 ```
-- install docker and put your user into the docker group (might need shell restart)
+- install docker and put your user into the docker group (might need shell restart) [see script](scripts/step_4/install_docker.sh)
 ```bash
 sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 sudo usermod -aG docker $(whoami)
