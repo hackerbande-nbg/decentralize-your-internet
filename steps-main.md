@@ -89,6 +89,7 @@ topics
 - Reboot after install
 - you successfully installed ubuntu!
 - demo user: cloudy:cloudy
+  - This creds only apply, if you chose them above under Profile Configuration
 - update your machine:
 ```bash
 sudo apt update && sudo apt upgrade -y
@@ -200,8 +201,10 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
   - password: clenkins
   - full name: Cloudy McCloudface
   - email: none@cloudy.com (jenkins can send mails if things go south)
+- Jenkins URL: Keep Default
 - Instance Configuration: Save and Finish
 - Start using Jenkins
+
 
 topics:
 - jenkins
@@ -211,8 +214,8 @@ topics:
 # Step 6 - register machine as agent (so we can automatically run stuff)
 
 - go to Jenkins --> Manage Jenkins --> Nodes
-- click on "Built-In Node"
-- add the label "server"
+- click on "Built-In Node" (german: "Master")
+- "Konfigurieren" -> add the label "server"
 - you can now run jenkins jobs on this machine via labels
 - test your setup with a jenkins pipeline
   - go to jenkins root
@@ -221,7 +224,31 @@ topics:
   - click on dev --> Create new Job --> Pipeline --> "my_first_pipeline"
   - go to the pipeline section
   - add the Hello World example from "try sample pipeline"
-  - can also be found here: step_6/pipeline_hello_world.groovy
+    <details>
+        <summary>Hello World Pipeline</summary>
+
+    ```groovy
+    pipeline {
+        agent any
+
+        stages {
+            stage('Hello') {
+                steps {
+                    echo 'Hello World'
+                }
+            }
+        }
+    }
+    ```
+
+    </details>
+    - can also be found here: [step_6/pipeline_hello_world.groovy](scripts/step_6/pipeline_hello_world.groovy)
+    - Click on "Build Now":  
+    ![Build Now Button](Jenkins_Run.png)
+    - Click on the Build Number, on the lower left, then on "Console Output":   
+    ![Hello World Console Output](Jenkins_Output.png)
+
+
 
 topics
 - jenkins config as code
@@ -246,9 +273,12 @@ cd decentralize-your-internet/infra/nextcloud
 cp .env.example .env
 nano .env
 ```
-- replace the password with a password of your choice
-- replace the project name with a name of your choice
-- start the nextcloud containers
+- replace the password (POSTGRES_PW) with a password of your choice
+- replace the project name (PROJECT) with a name of your choice
+- start the nextcloud containers:
+  ```bash
+  docker compose up -d
+  ```
 
 
 topics
