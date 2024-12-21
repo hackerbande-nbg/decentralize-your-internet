@@ -159,6 +159,7 @@ sudo usermod -aG docker $(whoami)
 ```bash
 sudo docker run hello-world
 ```
+Should pull the hello-world image from Docker Hub and show a lengthy "Hello from Docker! ..." message.
 
 topics: 
 - apt key
