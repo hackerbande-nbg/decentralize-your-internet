@@ -20,6 +20,15 @@ volumes:
     labels:
       - "${POSTGRES_LABEL}"
       - "${DOCKER_LABEL}"
+  nginx_pm_data:
+    name: "${PROJECT}_${NGINX_PM_VOLUME_DATA}"
+    labels:
+      - "${DOCKER_LABEL}"
+  nginx_pm_letsencrypt:
+    name: "${PROJECT}_${NGINX_PM_VOLUME_LETSENCRYPT}"
+    labels:
+      - "${DOCKER_LABEL}"
+
 
 services:
   app:
@@ -59,6 +68,18 @@ services:
       - "PYTHONUNBUFFERED=1"
     networks:
       - priv
+  
+  npm:
+    image: 'docker.io/jc21/nginx-proxy-manager:latest'
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '81:81'
+      - '443:443'
+    volumes:
+      - nginx_pm_data:/data
+      - nginx_pm_letsencrypt:/etc/letsencrypt
+
 
 networks:
   pub:
