@@ -61,7 +61,7 @@ services:
       - "${POSTGRES_PORT}:5432"
     restart: always
     volumes:
-      - postgres_db_nc:/var/mylibs/postgresql/data
+      - postgres_db_nc:/var/lib/postgresql/data
     environment:
       - POSTGRES_PASSWORD="${POSTGRES_PW}"
       - PGDATA=/var/mylibs/postgresql/data/pgdata
