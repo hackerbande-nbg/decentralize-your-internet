@@ -61,10 +61,10 @@ services:
       - "${POSTGRES_PORT}:5432"
     restart: always
     volumes:
-      - postgres_db_nc:/var/mylibs/postgresql/data
+      - postgres_db_nc:/var/lib/postgresql/data/pgdata
     environment:
-      - POSTGRES_PASSWORD="${POSTGRES_PW}"
-      - PGDATA=/var/mylibs/postgresql/data/pgdata
+      - POSTGRES_PASSWORD=${POSTGRES_PW}
+      - PGDATA=/var/lib/postgresql/data/pgdata
       - "PYTHONUNBUFFERED=1"
     networks:
       - priv
