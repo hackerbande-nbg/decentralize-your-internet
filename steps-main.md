@@ -280,21 +280,28 @@ nano .env
   ```bash
   docker compose up -d
   ```
-  - note down the container name of the 2 created containers, in this case: 38c3.fun_db_postgres + 38c3.fun_app_nextcloud
+  - note down the container name of the 3 created containers, in this case: 38c3.fun_app_nginx_proxy_manager, 38c3.fun_db_postgres + 38c3.fun_app_nextcloud. 
   
     ```bash
-    [+] Running 9/9
-    ✔ Network 38c3.fun_nw_private         Created                                                                           0.6s
-    ✔ Network 38c3.fun_nw_public          Created                                                                           0.2s
-    ✔ Volume "38c3.fun_db_postgres_data"  Created                                                                           0.0s
-    ✔ Volume "38c3.fun_nextcloud_core"    Created                                                                           0.0s
-    ✔ Volume "38c3.fun_nextcloud_apps"    Created                                                                           0.0s
-    ✔ Volume "38c3.fun_nextcloud_config"  Created                                                                           0.0s
-    ✔ Volume "38c3.fun_nextcloud_themes"  Created                                                                           0.0s
-    ✔ Container 38c3.fun_db_postgres      Started                                                                           2.3s
-    ✔ Container 38c3.fun_app_nextcloud    Started                                                                           3.1s
+      [+] Running 13/13
+      ✔ Network 38c3.fun_nw_public                         Created                                                            0.2s
+      ✔ Network nextcloud_default                          Created                                                            0.2s
+      ✔ Network 38c3.fun_nw_private                        Created                                                            0.2s
+      ✔ Volume "38c3.fun_nginx_proxy_manager_letsencrypt"  Created                                                            0.0s
+      ✔ Volume "38c3.fun_nextcloud_core"                   Created                                                            0.0s
+      ✔ Volume "38c3.fun_nextcloud_apps"                   Created                                                            0.0s
+      ✔ Volume "38c3.fun_nextcloud_config"                 Created                                                            0.0s
+      ✔ Volume "38c3.fun_nextcloud_themes"                 Created                                                            0.0s
+      ✔ Volume "38c3.fun_db_postgres_data"                 Created                                                            0.0s
+      ✔ Volume "38c3.fun_nginx_proxy_manager_data"         Created                                                            0.0s
+      ✔ Container 38c3.fun_app_nginx_proxy_manager         Started                                                            3.6s
+      ✔ Container 38c3.fun_db_postgres                     Started                                                            3.3s
+      ✔ Container 38c3.fun_app_nextcloud                   Started                                                            4.9s
     ```
-
+    You can also find the container names later with 
+    ```bash
+    docker ps
+    ```
   # Step 8 - Configure nextcloud
   - On your admin machine, open a browser and browse to http://<target machine IP>:8092
     - Nextcloud Setup Screen should show up ![Nextcloud Setup Screen](images/nextcloud_setup.png)
