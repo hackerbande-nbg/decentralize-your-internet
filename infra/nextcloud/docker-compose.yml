@@ -70,6 +70,7 @@ services:
       - priv
   
   npm:
+    container_name: '${PROJECT}_${CONTAINER_NAME_NPM}'
     image: 'docker.io/jc21/nginx-proxy-manager:latest'
     restart: unless-stopped
     ports:
