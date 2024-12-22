@@ -302,6 +302,7 @@ nano .env
     ```bash
     docker ps
     ```
+
   # Step 8 - Configure nextcloud
   - On your admin machine, open a browser and browse to http://<target machine IP>:8092
     - Nextcloud Setup Screen should show up ![Nextcloud Setup Screen](images/nextcloud_setup.png)
@@ -316,7 +317,6 @@ nano .env
   - Click on "Install"
     - Button should switch to "Installing" - patience!
   - On the next page click "Install recommended Apps" or make a choice 
-
 
 
 topics
