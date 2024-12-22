@@ -54,7 +54,7 @@ services:
     volumes:
       - postgres_db_nc:/var/mylibs/postgresql/data
     environment:
-      - POSTGRES_PASSWORD=${POSTGRES_PW}
+      - POSTGRES_PASSWORD="${POSTGRES_PW}"
       - PGDATA=/var/mylibs/postgresql/data/pgdata
       - "PYTHONUNBUFFERED=1"
     networks:

@@ -274,11 +274,42 @@ cp .env.example .env
 nano .env
 ```
 - replace the password (POSTGRES_PW) with a password of your choice
+  - ATTENTION it seems important to make it not too complicated, this cost me a while to figure out. I was lucky with a 25 character long password, containing lower, upper case and numbers. No special characters.
 - replace the project name (PROJECT) with a name of your choice
 - start the nextcloud containers:
   ```bash
   docker compose up -d
   ```
+  - note down the container name of the 2 created containers, in this case: 38c3.fun_db_postgres + 38c3.fun_app_nextcloud
+  
+    ```bash
+    [+] Running 9/9
+    ✔ Network 38c3.fun_nw_private         Created                                                                           0.6s
+    ✔ Network 38c3.fun_nw_public          Created                                                                           0.2s
+    ✔ Volume "38c3.fun_db_postgres_data"  Created                                                                           0.0s
+    ✔ Volume "38c3.fun_nextcloud_core"    Created                                                                           0.0s
+    ✔ Volume "38c3.fun_nextcloud_apps"    Created                                                                           0.0s
+    ✔ Volume "38c3.fun_nextcloud_config"  Created                                                                           0.0s
+    ✔ Volume "38c3.fun_nextcloud_themes"  Created                                                                           0.0s
+    ✔ Container 38c3.fun_db_postgres      Started                                                                           2.3s
+    ✔ Container 38c3.fun_app_nextcloud    Started                                                                           3.1s
+    ```
+
+  # Step 8 - Configure nextcloud
+  - On your admin machine, open a browser and browse to http://<target machine IP>:8092
+    - Nextcloud Setup Screen should show up ![Nextcloud Setup Screen](images/nextcloud_setup.png)
+  - Choose an admin login and password of your choice
+  - Expand "Storage and Database":
+    - Storage Directory: Keep Default
+    - Setup Database: Toggle "PostgreSQL"
+    - Database Account: postgres
+    - Database Password: Enter the one you chose in [Step 7](#step-7---run-nextcloud) as POSTGRES_PW
+    - Database Name: postgres
+    - Database Host: <postgres container name from [Step 7](#step-7---run-nextcloud)>:5433
+  - Click on "Install"
+    - Button should switch to "Installing" - patience!
+  - On the next page click "Install recommended Apps" or make a choice 
+
 
 
 topics
