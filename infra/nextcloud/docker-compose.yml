@@ -56,7 +56,7 @@ services:
 
   db:
     container_name: '${PROJECT}_${CONTAINER_NAME_POSTGRES}'
-    image: postgres:13.4
+    image: postgres:latest
     ports:
       - "${POSTGRES_PORT}:5432"
     restart: always
