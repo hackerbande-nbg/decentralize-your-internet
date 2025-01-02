@@ -65,14 +65,14 @@ download 22.04 LTS latest version (https://ubuntu.com/download/server)
 - storage configuration: press Done
 - start installation: Continue
 - Profile configuration: add your name, your server name, your username, and your password
+  - In this tutorial we assume at some points that you created your new user as user name "cloudy". In case you choose to use another one (how dare you! :O ), please keep that in mind.
 - remember your password
 - Ubuntu ProSetup: skip
 - SSH configuration: enable Install OpenSSH server
 - Be patient once more. This can take a while, especially the "Installing Kernel" step.
 - Reboot after install
 - you successfully installed ubuntu!
-- demo user: cloudy:cloudy
-  - This creds only apply, if you chose them above under Profile Configuration
+
 - update your machine:
 ```bash
 sudo apt update && sudo apt upgrade -y
