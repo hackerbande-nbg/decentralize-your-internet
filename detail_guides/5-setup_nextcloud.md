@@ -3,23 +3,33 @@
 ## Run Docker containers
 - copy the git repository to your target machine
 ```bash
-/home/cloudy
+cd ~
 git clone https://github.com/hackerbande-nbg/decentralize-your-internet.git
 ```
-- do some prep work, go to the nextcloud folder, make a copy of the env file and edit it
-```bash
-cd /home/cloudy
-cd scripts/step_5
-prep_nextcloud_env.sh
-```
-- replace the password (POSTGRES_PW) with a password of your choice
-  - ATTENTION it seems important to make it not too complicated, this cost me a whi
-  le to figure out. I was lucky with a 25 character long password, containing lower, upper case and numbers. No special characters.
-- replace the project name (PROJECT) with a name of your choice
+- do some prep work, go to the nextcloud folder, copy ```.env.example``` to ```.env```. This is all done for you by executing:  
+  ```bash
+  cd ~
+  cd scripts/step_5
+  prep_nextcloud_env.sh
+  ```  
+  Edit the newly created ```.env``` for example with nano:
+  ```bash
+  nano ~/decentralize-your-internet/infra/nextcloud/.env
+  ```
+  
+  - replace the password (POSTGRES_PW) with a password of your choice
+    - ATTENTION it seems important to make it not too complicated, this cost me a while to figure out. I was lucky with a 25 character long password, containing lower, upper case and numbers. No special characters.  
+  - replace the project name (PROJECT) with a name of your choice  
+
 - start the nextcloud containers:
   ```bash
+  cd ~/decentralize-your-internet/infra/nextcloud
   docker compose up -d
   ```
+  <details><summary>Explanation</summary>
+  This command will evaluate a compose.yml lying in the current working directory. It will also automatically load a .env file in the current working directory, thus replacing required environment variables. 
+  </details>  
+  
   - note down the container name of the 3 created containers, in this case: 38c3.fun_app_nginx_proxy_manager, 38c3.fun_db_postgres + 38c3.fun_app_nextcloud. 
   
     ```bash
