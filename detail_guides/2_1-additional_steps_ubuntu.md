@@ -8,7 +8,7 @@ cd git
 ```
 - clone the workshop repo repository
 ```bash
-git clone git@github.com:hackerbande-nbg/decentralize-your-internet.git
+git clone https://github.com/hackerbande-nbg/decentralize-your-internet.git
 ```
 - publish the public key of your admin machine via http
 ```bash

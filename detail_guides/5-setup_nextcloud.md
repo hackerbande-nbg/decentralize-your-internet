@@ -4,7 +4,7 @@
 - copy the git repository to your target machine
 ```bash
 /home/cloudy
-git clone git@github.com:hackerbande-nbg/decentralize-your-internet.git
+git clone https://github.com/hackerbande-nbg/decentralize-your-internet.git
 ```
 - do some prep work, go to the nextcloud folder, make a copy of the env file and edit it
 ```bash
