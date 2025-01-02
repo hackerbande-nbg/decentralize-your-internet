@@ -7,7 +7,15 @@ Make sure your System is up to date and you have backups of your data.**
 
 ### FritzBox
 In a Fritzbox router, this can be configured under Internet -> Permit Access -> Port Sharing.
-Add a new Device for Sharing, select your server and set internal and external port as 443.
+Add a new Device for Sharing, select your server and set internal and external port as 443. Repeat the same for port 80.  
+<details>
+<summary>Explanation</summary>
+We intend to only use https (443) but for requesting a Let's Encrypt certificate, the NGINX Proxy Manager needs to be reachable via port 80, as we don't have an SSL certificate at that point. For more info see this [Let's Encrypt Blogpost](https://letsencrypt.org/docs/allow-port-80/).
+</details>  
+
+
+Result should look something like this:
+![Fritzbox Port Forwarding](../images/fritzbox_port_forwarding.png)
 
 ## Initial Login
 On your admin machine, open a browser and browse to http://<target machine IP>:81 
