@@ -64,7 +64,7 @@ git clone https://github.com/hackerbande-nbg/decentralize-your-internet.git
   - Database Account: postgres
   - Database Password: Enter the one you chose in [Step 7](#step-7---run-nextcloud) as POSTGRES_PW
   - Database Name: postgres
-  - Database Host: <postgres container name from [Step 7](#step-7---run-nextcloud)>:5433
+  - Database Host: <postgres container name from [Step 7](#step-7---run-nextcloud)>:5432
 - Click on "Install"
   - Button should switch to "Installing" - patience!
 - On the next page click "Install recommended Apps" or make a choice 
