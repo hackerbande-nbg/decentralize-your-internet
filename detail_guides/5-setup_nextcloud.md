@@ -10,11 +10,11 @@ git clone https://github.com/hackerbande-nbg/decentralize-your-internet.git
   ```bash
   cd ~
   cd scripts/step_5
-  prep_nextcloud_env.sh
+  ./prep_nextcloud_env.sh
   ```  
   Edit the newly created ```.env``` for example with nano:
   ```bash
-  nano ~/decentralize-your-internet/infra/nextcloud/.env
+  nano ~/nextcloud_infra/.env
   ```
   
   - replace the password (POSTGRES_PW) with a password of your choice
