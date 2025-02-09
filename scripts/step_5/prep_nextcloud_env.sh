@@ -1,6 +1,5 @@
 echo "creating folders"
-HOME_DIR="/home/cloudy"
-KEY_NAME="jenkins_deploy_key"
+HOME_DIR="/~"
 
 cd ""$HOME_DIR""
 mkdir nextcloud_data
@@ -15,10 +14,10 @@ cp decentralize-your-internet/infra/nextcloud/.env.example nextcloud_infra/.env
 chmod +r $HOME_DIR/nextcloud_infra/compose.yml
 chmod +r $HOME_DIR/nextcloud_infra/.env
 
-sudo chmod 711 /home/cloudy # give jenkins read access to the home repo
-sudo chmod 777 /home/cloudy/nextcloud_infra
+sudo chmod 711 $HOME_DIR # give jenkins read access to the home repo
+sudo chmod 777 $HOME_DIR
 
 cd nextcloud_infra
 echo ""
-echo -e "\e[94m!!! check the .env and adjust db secret in all cases and project names if necessary !!!\e[0m"
+echo -e "\e[94m!!! check the $HOME_DIR/nextcloud_infra/.env and adjust db secret in all cases and project names if necessary !!!\e[0m"
 echo ""
