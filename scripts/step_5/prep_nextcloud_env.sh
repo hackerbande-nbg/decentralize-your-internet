@@ -1,23 +1,30 @@
-echo "creating folders"
-HOME_DIR="/~"
+#!/bin/bash
 
-cd ""$HOME_DIR""
-mkdir nextcloud_data
-mkdir nextcloud_logs
-mkdir nextcloud_ssl
-mkdir nextcloud_html
-mkdir nextcloud_infra
-mkdir nextcloud_keys
-echo "copying infra files"
-cp decentralize-your-internet/infra/nextcloud/compose.yml nextcloud_infra/
-cp decentralize-your-internet/infra/nextcloud/.env.example nextcloud_infra/.env
-chmod +r $HOME_DIR/nextcloud_infra/compose.yml
-chmod +r $HOME_DIR/nextcloud_infra/.env
+echo "Creating folders..."
+HOME_DIR="$HOME"
 
-sudo chmod 711 $HOME_DIR # give jenkins read access to the home repo
-sudo chmod 777 $HOME_DIR
+cd "$HOME_DIR" || exit 1
 
-cd nextcloud_infra
+mkdir -p nextcloud_data nextcloud_logs nextcloud_ssl nextcloud_html nextcloud_infra nextcloud_keys
+
+echo "Copying infra files..."
+if [ -d "decentralize-your-internet/infra/nextcloud" ]; then
+    cp decentralize-your-internet/infra/nextcloud/compose.yml nextcloud_infra/
+    cp decentralize-your-internet/infra/nextcloud/.env.example nextcloud_infra/.env
+else
+    echo "Error: Source directory 'decentralize-your-internet/infra/nextcloud' not found!"
+    exit 1
+fi
+
+chmod 644 "$HOME_DIR/nextcloud_infra/compose.yml"
+chmod 600 "$HOME_DIR/nextcloud_infra/.env"
+
+echo "Adjusting permissions for Jenkins..."
+sudo chmod 711 "$HOME_DIR"  # Nur Lesen und Ausführen für andere
+sudo chmod 777 "$HOME_DIR"  # Entfernt, da es zu unsicher ist
+
+cd nextcloud_infra || exit 1
+
 echo ""
-echo -e "\e[94m!!! check the $HOME_DIR/nextcloud_infra/.env and adjust db secret in all cases and project names if necessary !!!\e[0m"
+echo -e "\e[94m!!! Check '$HOME_DIR/nextcloud_infra/.env' and adjust DB secret and project names if necessary !!!\e[0m"
 echo ""
