@@ -9,7 +9,7 @@ git clone https://github.com/hackerbande-nbg/decentralize-your-internet.git
 - do some prep work, go to the nextcloud folder, copy ```.env.example``` to ```.env```. This is all done for you by executing:  
   ```bash
   cd ~
-  cd scripts/step_5
+  cd decentralize-your-internet/scripts/step_5
   prep_nextcloud_env.sh
   ```  
   Edit the newly created ```.env``` for example with nano:

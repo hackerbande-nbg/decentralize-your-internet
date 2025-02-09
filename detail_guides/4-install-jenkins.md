@@ -15,7 +15,8 @@ sudo apt install -y jenkins
 ```bash
 ip -4 addr show | grep -oP '(?<=inet\s)\d+(\.\d+){3}'
 ```
-- on your admin machine, open your browser and go to http://<your-ip>:8080
+- you will get 3 ip addresses, 127.0.0.1=localhost, 172.17.x.x=Docker host, you private network ip e. g. 192.168.x.x=your-ip 
+- on your admin machine, open your browser and go to http://`<`your-ip`>`:8080
 - this will open the jenkins web interface
 - copy the password from the console
 ```bash
