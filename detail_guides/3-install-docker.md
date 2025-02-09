@@ -16,13 +16,17 @@ echo \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt update
 ```
-- install docker and put your user into the docker group (might need shell restart) [see script](../scripts/step_3/install_docker.sh)
+- install docker and put your user into the docker group [see script](../scripts/step_3/install_docker.sh)
 ```bash
 sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 sudo usermod -aG docker $(whoami)
 ```
-- test your installation
+- logout with 
+```bash 
+exit
+```
+- logon again and test your installation
 ```bash
-sudo docker run hello-world
+docker run hello-world
 ```
 Should pull the hello-world image from Docker Hub and show a lengthy "Hello from Docker! ..." message.
