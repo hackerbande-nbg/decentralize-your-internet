@@ -21,7 +21,7 @@ chmod 600 "$HOME_DIR/nextcloud_infra/.env"
 
 echo "Adjusting permissions for Jenkins..."
 sudo chmod 711 "$HOME_DIR"  # Nur Lesen und Ausführen für andere
-sudo chmod 777 "$HOME_DIR"  # Entfernt, da es zu unsicher ist
+sudo chmod 777 "$HOME_DIR/nextcloud_infra"  # Vollzugriff für alle
 
 cd nextcloud_infra || exit 1
 
