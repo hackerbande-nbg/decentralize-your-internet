@@ -1,7 +1,9 @@
+// this pipeline updates the Nextcloud, Postgres and Nginx Proxy Manager containers
+// 
+// Recommendation: Run once a night
+
 pipeline {
     agent any
-    
-    // this pipeline updates the Nextcloud container
 
     stages {
 

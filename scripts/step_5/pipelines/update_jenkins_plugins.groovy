@@ -4,6 +4,8 @@
 // preferred syntax for Jenkins pipelines is the declarative syntax, which is the one used 
 // in the previous scripts.
 // just accept it for this pipeline ¯\_(ツ)_/¯
+// 
+// Recommendation: Run once a night
 
 
 jenkins.model.Jenkins.getInstance().getUpdateCenter().getSites().each { site ->

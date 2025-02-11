@@ -9,8 +9,11 @@ git clone https://github.com/hackerbande-nbg/decentralize-your-internet.git
 - do some prep work, go to the nextcloud folder, copy ```.env.example``` to ```.env```. This is all done for you by executing:  
   ```bash
   cd ~
-  cd scripts/step_5
+
+
+  cd decentralize-your-internet/scripts/step_5
   ./prep_nextcloud_env.sh
+
   ```  
   Edit the newly created ```.env``` for example with nano:
   ```bash
@@ -23,7 +26,7 @@ git clone https://github.com/hackerbande-nbg/decentralize-your-internet.git
 
 - start the nextcloud containers:
   ```bash
-  cd ~/decentralize-your-internet/infra/nextcloud
+  cd ~/nextcloud_infra/
   docker compose up -d
   ```
   <details><summary>Explanation</summary>
@@ -62,9 +65,9 @@ git clone https://github.com/hackerbande-nbg/decentralize-your-internet.git
   - Storage Directory: Keep Default
   - Setup Database: Toggle "PostgreSQL"
   - Database Account: postgres
-  - Database Password: Enter the one you chose in [Step 7](#step-7---run-nextcloud) as POSTGRES_PW
+  - Database Password: Enter the one you chose above as POSTGRES_PW
   - Database Name: postgres
-  - Database Host: <postgres container name from [Step 7](#step-7---run-nextcloud)>:5432
+  - Database Host: <postgres container name from above>:5432
 - Click on "Install"
   - Button should switch to "Installing" - patience!
 - On the next page click "Install recommended Apps" or make a choice 
@@ -77,7 +80,8 @@ Here is one way to do it.
 - Identify your nextcloud config volume:  
     ```docker volume ls```
 - spin up a temporary docker container, which has nano, mount the config volume and edit it:  
-    ```docker run --rm -it -v 38c3.fun_nextcloud_config:/mnt/config ubuntu bash -c "apt-get update && apt-get install -y nano && nano /mnt/config/config.php"```
+    ```docker run --rm -it -v [nextcloud config volume name]:/mnt/config ubuntu bash -c "apt-get update && apt-get install -y nano && nano /mnt/config/config.php"```
+    - Replace [nextcloud config volume name] with the name of your config volume. To find the correct one, list all volumes with ```bash    docker volume ls    ```
 - in nano, change the item 0 of array "trusted domains" to your real domain:  
     - Before:  
     ![trusted domains before change](../images/config_php_domain_before.png)
@@ -85,5 +89,6 @@ Here is one way to do it.
     ![trusted domains before change](../images/config_php_domain_after.png)
 - as we are already here, please also add the following line to config, it is required to get an A+ in security scan:  
 ``` 'overwriteprotocol' => 'https',```
+  - Otherwise, Nextcloud Security Scan might show problem "__Host-Prefix"
 
 Please note: If NGINX Proxy Manager is not yet fully configured, your external domain will not yet point to the nextcloud. So this setting will effectively lock you out of your nextcloud for now. Which is ok, but if you want to log in during this time, consider just adding both adresses, internal IP and external domain to the array of trusted domains.
